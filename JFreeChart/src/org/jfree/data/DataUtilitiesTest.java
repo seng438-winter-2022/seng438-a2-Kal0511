@@ -1,9 +1,6 @@
 package org.jfree.data;
 
 import static org.junit.Assert.*;
-
-import java.security.InvalidParameterException;
-
 import org.jmock.*;
 import org.junit.*;
 
@@ -15,6 +12,7 @@ public class DataUtilitiesTest {
 		mockingContext = new Mockery();
 	}
 
+	
 	// createNumberArray
 
 	@Test
@@ -32,6 +30,7 @@ public class DataUtilitiesTest {
 		}
 	}
 
+	
 	// createNumberArray2D
 
 	@Test
@@ -92,6 +91,7 @@ public class DataUtilitiesTest {
 		assertArrayEquals(expected, result);
 	}
 
+	
 	// equal
 
 	@Test
@@ -150,6 +150,7 @@ public class DataUtilitiesTest {
 		assertEquals(DataUtilities.equal(array1, array2), false);
 	}
 
+	
 	// getCumulativePercentages
 
 	@Test
@@ -197,6 +198,7 @@ public class DataUtilitiesTest {
 		assertEquals(0, result.getItemCount());
 	}
 
+	
 	// calculateColumnTotal
 
 	@Test
@@ -243,6 +245,7 @@ public class DataUtilitiesTest {
 		double result = DataUtilities.calculateColumnTotal(values, 0);
 		assertEquals(0, result, .01d);
 	}
+	
 
 	// clone
 	
