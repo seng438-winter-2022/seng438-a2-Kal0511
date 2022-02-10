@@ -58,6 +58,94 @@ public class RangeTest {
 		assertEquals("Upper bound should be 10", 10, values.getUpperBound(), .000000001d);
 	}
 
+	// combine
+	@Test
+	public void combineTestIntersect() {
+		Range test1, test2;
+		Range result, expected;
+		
+		test1 = new Range(0, 10);
+		test2 = new Range(5, 15);
+		expected = new Range(0, 15);
+		result = Range.combine(test1, test2);
+		assertEquals(result, expected);
+	}
+	
+	@Test
+	public void combineTestNoOverlap() {
+		Range test1, test2;
+		Range result, expected;
+		
+		test1 = new Range(0, 10);
+		test2 = new Range(15, 20);
+		expected = new Range(0, 20);
+		result = Range.combine(test1, test2);
+		assertEquals(result, expected);
+	}
+	
+	@Test
+	public void combineTestNull() {
+		Range test1, test2;
+		Range result, expected;
+		
+		test1 = null;
+		test2 = new Range(0, 10);
+		expected = new Range(0, 10);
+		result = Range.combine(test1, test2);
+		assertEquals(result, expected);
+	}
+	
+	// constrain
+	@Test
+	public void constrainTestInsideRange() {
+		Range test1;
+		double result;
+		
+		test1 = new Range(2, 7);
+		result = test1.constrain(3);
+		assertEquals(result, 3, 0.01d);
+	}
+	
+	@Test
+	public void constrainTestOutsideRangeAbove() {
+		Range test1;
+		double result;
+		
+		test1 = new Range(2, 7);
+		result = test1.constrain(8);
+		assertEquals(result, 7, 0.01d);
+	}
+	
+	@Test
+	public void constrainTestOutsideRangeBelow() {
+		Range test1;
+		double result;
+		
+		test1 = new Range(2, 7);
+		result = test1.constrain(1);
+		assertEquals(result, 2, 0.01d);
+	}
+	
+	@Test
+	public void constrainTestOnLower() {
+		Range test1;
+		double result;
+		
+		test1 = new Range(2, 7);
+		result = test1.constrain(2);
+		assertEquals(result, 2, 0.01d);
+	}
+	
+	@Test
+	public void constrainTestOnUpper() {
+		Range test1;
+		double result;
+		
+		test1 = new Range(2, 7);
+		result = test1.constrain(7);
+		assertEquals(result, 7, 0.01d);
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 	}
