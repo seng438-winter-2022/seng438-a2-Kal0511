@@ -3,9 +3,17 @@ package org.jfree.data;
 import static org.junit.Assert.*;
 import org.junit.*;
 
+/**
+ * This class contains test cases used for testing the functionality
+ * of the RangeType class from the JFreechart application
+ */
 public class RangeTest {
 
+  // private field used by some methods to test the constrain() method in the
+  // RangeType class
   private Range constrainRangeTest;
+  // private field used by some methods to test the contains() method in the
+  // RangeType class
   private Range containsRangeTest;
 
   @Before
@@ -17,18 +25,27 @@ public class RangeTest {
   // getCentralValue
 
   @Test
+  /**
+   * A method testing the getCentralValue() method for a negative output
+   */
   public void centralValueShouldBeNegative() {
     Range values = new Range(-10, 5);
     assertEquals("The central value of -10 and 5 should be -2.5", -2.5, values.getCentralValue(), .01d);
   }
 
   @Test
+  /**
+   * A method testing the getCentralValue() method for a zero output
+   */
   public void centralValueShouldBeZero() {
     Range values = new Range(-10, 10);
     assertEquals("The central value of -10 and 10 should be 0", 0, values.getCentralValue(), .01d);
   }
 
   @Test
+  /**
+   * A method testing the getCentralValue() method for a postive output
+   */
   public void centralValueShouldBePositive() {
     Range values = new Range(-5, 10);
     assertEquals("The central value of -5 and 10 should be 2.5", 2.5, values.getCentralValue(), .01d);
@@ -37,38 +54,68 @@ public class RangeTest {
   // contains
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is smaller than the
+   * lower boundary of a Range object
+   */
   public void containsTestForLessThanLowerBound() {
     assertEquals(containsRangeTest.contains(-13.1), false);
 
   }
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is within the lower
+   * boundary of a Range object
+   */
   public void containsTestForOnLowerBound() {
     assertEquals(containsRangeTest.contains(-11.1), true);
-  }
+  } // ^^^ why not change -11.1 to -11.5 to cover the boundary?
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is within
+   * the boundary of a Range object
+   */
   public void containsTestForInBetweenBounds() {
     assertEquals(containsRangeTest.contains(0), true);
   }
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is
+   * equal to the upper bound limit of a Range object
+   */
   public void containsTestForOnUpperBound() {
     assertEquals(containsRangeTest.contains(31.5), true);
   }
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is
+   * greater than the upper bound of a Range object
+   */
   public void containsTestForMoreThanUpperBound() {
     assertEquals(containsRangeTest.contains(41.5), false);
   }
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is
+   * equal to the minimum double value set as the upper bound
+   * of a Range object
+   */
   public void containsTestMin() {
     Range minRange = new Range(0, Double.MIN_VALUE);
     assertEquals(minRange.contains(Double.MIN_VALUE), true);
   }
 
   @Test
+  /**
+   * A method testing the contains() method for a value that is
+   * equal to the maximum double value set as the upper bound
+   * of a Range object
+   */
   public void containsTestMax() {
     Range minRange = new Range(0, Double.MAX_VALUE);
     assertEquals(minRange.contains(Double.MAX_VALUE), true);
@@ -77,6 +124,11 @@ public class RangeTest {
   // equals
 
   @Test
+
+  /**
+   * A method testing the equals method for equality
+   * between two Range objects
+   */
   public void equalsTestForSameRange() {
     Range values = new Range(-10, 10);
     Range results = new Range(-10, 10);
@@ -84,12 +136,22 @@ public class RangeTest {
   }
 
   @Test
+  /**
+   * A method testing the equals method for inequality
+   * between two Range objects using a lower range
+   * for the expecteed result
+   */
   public void equalsTestForLowerRange() {
     Range values = new Range(-10, 10);
     Range results = new Range(-20, 10);
     assertEquals(values.equals(results), false);
   }
 
+  /**
+   * A method testing the equals method for inequality
+   * between two Range objects using a higher range
+   * for the expecteed result
+   */
   @Test
   public void equalsTestForHigherRange() {
     Range values = new Range(-10, 10);
@@ -99,6 +161,10 @@ public class RangeTest {
 
   // getLowerBound
 
+  /**
+   * A method testing the getLowerBound() method for
+   * the correct lower bound of a Range object
+   */
   @Test
   public void getLowerBoundTest() {
     Range values = new Range(-10, 10);
@@ -107,6 +173,10 @@ public class RangeTest {
 
   // getUpperBound
 
+  /**
+   * A method testing the getUpperBound() method for
+   * the correct upper bound of a Range object
+   */
   @Test
   public void getUpperBoundTest() {
     Range values = new Range(-10, 10);
@@ -115,6 +185,10 @@ public class RangeTest {
 
   // combine
 
+  /**
+   * A method testing the combine() method for the
+   * the correct combination of two Range objects
+   */
   @Test
   public void combineTestIntersect() {
     Range test1, test2;
@@ -127,6 +201,11 @@ public class RangeTest {
     assertEquals(result, expected);
   }
 
+  /**
+   * A method testing the combine() method for the
+   * the correct combination of two Range objects
+   * with no overlap
+   */
   @Test
   public void combineTestNoOverlap() {
     Range test1, test2;
@@ -139,6 +218,11 @@ public class RangeTest {
     assertEquals(result, expected);
   }
 
+  /**
+   * A method testing the combine() method for the
+   * the correct combination of a null Range object
+   * and an initialized Range object
+   */
   @Test
   public void combineTestNull() {
     Range test1, test2;
@@ -153,6 +237,11 @@ public class RangeTest {
 
   // constrain
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value. This value is within the range of the Range
+   * object
+   */
   @Test
   public void constrainTestInsideRange() {
     double result;
@@ -160,6 +249,12 @@ public class RangeTest {
     assertEquals(result, 3, 0.01d);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value. The value is greater than the range of the
+   * Range
+   * object
+   */
   @Test
   public void constrainTestOutsideRangeAbove() {
     double result;
@@ -167,6 +262,10 @@ public class RangeTest {
     assertEquals(result, 7, 0.01d);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value.
+   */
   @Test
   public void constrainTestOutsideRangeBelow() {
     double result;
@@ -174,6 +273,11 @@ public class RangeTest {
     assertEquals(result, 2, 0.01d);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value. The value compared is equal to the lower
+   * range of the Range object
+   */
   @Test
   public void constrainTestOnLower() {
     double result;
@@ -181,6 +285,11 @@ public class RangeTest {
     assertEquals(result, 2, 0.01d);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value. The value compared is equal to the upper
+   * range of the Range object
+   */
   @Test
   public void constrainTestOnUpper() {
     double result;
@@ -188,6 +297,10 @@ public class RangeTest {
     assertEquals(result, 7, 0.01d);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value using the minimum double value for comparison
+   */
   @Test
   public void constrainTestOnMin() {
     double result = Double.MIN_VALUE;
@@ -197,6 +310,10 @@ public class RangeTest {
     assertEquals(result, minRange.constrain(result), precision);
   }
 
+  /**
+   * A method testing the constrain() method for value within the range that is
+   * closest to the specified value using the maximum double value for comparison
+   */
   @Test
   public void constrainTestOnMax() {
     double result = Double.MAX_VALUE;
