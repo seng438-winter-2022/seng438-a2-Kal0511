@@ -12,34 +12,58 @@ public class DataUtilitiesTest {
 		mockingContext = new Mockery();
 	}
 
-	
 	// createNumberArray
 
 	@Test
 	/**
-	 * A method for testing the createNumberArray(double[] data) method
-	 * for any values in the double array. 
+	 * A method for testing the createNumberArray(double[] data) method when the
+	 * input is null.
 	 */
-	public void createNumberArrayTest() {
-		for (int m = 0; m < 10; m++) {
-			double[] array = new double[m];
-			for (int i = 0; i < m; i++) {
-				array[i] = i;
-			}
-			Number[] result = DataUtilities.createNumberArray(array);
-			assertEquals(array.length, result.length);
-			for (int i = 0; i < m; i++) {
-				assertEquals(array[i], result[i]);
-			}
+	public void createNumberArrayForNULL() {
+		boolean testResult = false;
+		try {
+			DataUtilities.createNumberArray(null);
+		} catch (Exception e) {
+			testResult = true;
+		} finally {
+			assertEquals("Creating Number array from null results in an error", true, testResult);
 		}
 	}
 
-	
-	// createNumberArray2D
 	@Test
-	/*
-	 * A method for testing the createNumberArray2D(double[][] data) method
-	 * when the input is null.
+	/**
+	 * A method for testing the createNumberArray(double[][] data) method when the
+	 * input is 1 value.
+	 */
+	public void createNumberArrayOfSize1() {
+		double[] input = { 10.5 };
+		Number[] expected = { 10.5 };
+		Number[] result = DataUtilities.createNumberArray(input);
+		assertArrayEquals("One value double array creates a one value Number array", expected, result);
+	}
+
+	@Test
+	/**
+	 * A method for testing the createNumberArray(double[] data) method when the
+	 * input is 10 values.
+	 */
+	public void createNumberArrayOfSize10() {
+		double[] input = new double[10];
+		Number[] expected = new Number[10];
+		for (int n = 0; n < 10; n++) {
+			input[n] = (n-5) * 1.5;
+			expected[n] = (n-5) * 1.5;
+		}
+		Number[] result = DataUtilities.createNumberArray(input);
+		assertArrayEquals("Ten value double array creates a ten value Number array",expected, result);
+	}
+
+	// createNumberArray2D
+
+	@Test
+	/**
+	 * A method for testing the createNumberArray2D(double[][] data) method when the
+	 * input is null.
 	 */
 	public void createNumberArray2DForNULL() {
 		boolean testResult = false;
@@ -48,14 +72,14 @@ public class DataUtilitiesTest {
 		} catch (Exception e) {
 			testResult = true;
 		} finally {
-			assertEquals(true, testResult);
+			assertEquals("Creating 2D Number array from null results in an error", true, testResult);
 		}
 	}
 
 	@Test
-	/*
-	 * A method for testing the createNumberArray2D(double[][] data) method
-	 * when the input has minimum minimum values. 
+	/**
+	 * A method for testing the createNumberArray2D(double[][] data) method when the
+	 * input has minimum minimum values.
 	 */
 	public void createNumberArray2DFor1By1Array() {
 		double[][] input = { { 10.5 } };
@@ -65,9 +89,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the createNumberArray2D(double[][] data) method
-	 * when the input has minimum high values. 
+	/**
+	 * A method for testing the createNumberArray2D(double[][] data) method when the
+	 * input has minimum high values.
 	 */
 	public void createNumberArray2DFor1By10Array() {
 		double[][] input = new double[1][10];
@@ -81,9 +105,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the createNumberArray2D(double[][] data) method
-	 * when the input has high minimum values. 
+	/**
+	 * A method for testing the createNumberArray2D(double[][] data) method when the
+	 * input has high minimum values.
 	 */
 	public void createNumberArray2DFor10By1Array() {
 		double[][] input = new double[10][1];
@@ -97,9 +121,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the createNumberArray2D(double[][] data) method
-	 * when the input has high high values. 
+	/**
+	 * A method for testing the createNumberArray2D(double[][] data) method when the
+	 * input has high high values.
 	 */
 	public void createNumberArray2DFor10By10Array() {
 		double[][] input = new double[10][10];
@@ -114,11 +138,11 @@ public class DataUtilitiesTest {
 		assertArrayEquals(expected, result);
 	}
 
-	
 	// equal
-	/*
-	 * A method for testing the equal(double[][]a, double[][]b) method
-	 * when the input is low low values.
+
+	/**
+	 * A method for testing the equal(double[][]a, double[][]b) method when the
+	 * input is low low values.
 	 */
 	@Test
 	public void equalFor1By1ArrayTest() {
@@ -130,9 +154,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the equal(double[][]a, double[][]b) method
-	 * when the input is low high values.
+	/**
+	 * A method for testing the equal(double[][]a, double[][]b) method when the
+	 * input is low high values.
 	 */
 	public void equalFor1By10ArrayTest() {
 		double[][] array1 = new double[1][10];
@@ -145,9 +169,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the equal(double[][]a, double[][]b) method
-	 * when the input is high low values.
+	/**
+	 * A method for testing the equal(double[][]a, double[][]b) method when the
+	 * input is high low values.
 	 */
 	public void equalFor10By1ArrayTest() {
 		double[][] array1 = new double[10][1];
@@ -160,9 +184,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the equal(double[][]a, double[][]b) method
-	 * when the input is high high values.
+	/**
+	 * A method for testing the equal(double[][]a, double[][]b) method when the
+	 * input is high high values.
 	 */
 	public void equalFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
@@ -175,11 +199,11 @@ public class DataUtilitiesTest {
 		}
 		assertEquals(DataUtilities.equal(array1, array2), true);
 	}
-	
+
 	@Test
-	/*
-	 * A method for testing the equal(double[][]a, double[][]b) method
-	 * when the input values are not equal.
+	/**
+	 * A method for testing the equal(double[][]a, double[][]b) method when the
+	 * input values are not equal.
 	 */
 	public void notEqualFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
@@ -193,9 +217,9 @@ public class DataUtilitiesTest {
 		assertEquals(DataUtilities.equal(array1, array2), false);
 	}
 
-	
 	// getCumulativePercentages
-	/*
+
+	/**
 	 * A method for testing the getCumulativePercentages(KeyedValues data) method
 	 * when the inputs are positive.
 	 */
@@ -225,13 +249,13 @@ public class DataUtilitiesTest {
 		});
 
 		KeyedValues result = DataUtilities.getCumulativePercentages(values);
-		assertEquals(0.4, result.getValue(0));
-		assertEquals(0.6, result.getValue(1));
-		assertEquals(1.0, result.getValue(2));
+		assertEquals("First index has 2 thus 2/5 result should be 0.4", 0.4, result.getValue(0));
+		assertEquals("Second index has 1 thus 3/5 result should be 0.6",0.6, result.getValue(1));
+		assertEquals("Third index has 2 thus 5/5 result should be 1.0",1.0, result.getValue(2));
 	}
 
 	@Test
-	/*
+	/**
 	 * A method for testing the getCumulativePercentages(KeyedValues data) method
 	 * when the inputs are zero.
 	 */
@@ -245,16 +269,15 @@ public class DataUtilitiesTest {
 		});
 
 		KeyedValues result = DataUtilities.getCumulativePercentages(values);
-		assertEquals(0, result.getItemCount());
+		assertEquals("Empty input results in an empty output", 0, result.getItemCount());
 	}
 
-	
 	// calculateColumnTotal
 
 	@Test
-	/*
-	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
-	 * when the number of rows is above the boundary of 1.
+	/**
+	 * A method for testing the calculateColumnTotal(Values2D data, int column)
+	 * method when the number of rows is above the boundary of 1.
 	 */
 	public void calculateColumnTotalForTwoValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
@@ -269,13 +292,36 @@ public class DataUtilitiesTest {
 			}
 		});
 		double result = DataUtilities.calculateColumnTotal(values, 0);
-		assertEquals(3.75, result, .01d);
+		assertEquals("First comlum has values 1.25 and 2.5 which resultsin 3.75", 3.75, result, .01d);
+	}
+	
+	@Test
+	/**
+	 * A method for testing the calculateColumnTotal(Values2D data, int column)
+	 * method when the number of rows is above the boundary of 1 has negative values.
+	 */
+	public void calculateColumnTotalForNegativeValues() {
+		Values2D values = mockingContext.mock(Values2D.class);
+		mockingContext.checking(new Expectations() {
+			{
+				oneOf(values).getRowCount();
+				will(returnValue(3));
+				oneOf(values).getValue(0, 0);
+				will(returnValue(1.25));
+				oneOf(values).getValue(1, 0);
+				will(returnValue(2.5));
+				oneOf(values).getValue(2, 0);
+				will(returnValue(-5.5));
+			}
+		});
+		double result = DataUtilities.calculateColumnTotal(values, 0);
+		assertEquals("First comlum has values -5.5, 1.25 and 2.5 which resultsin -1.75", -1.75, result, .01d);
 	}
 
 	@Test
-	/*
-	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
-	 * when the number of rows is on the boundary of 1.
+	/**
+	 * A method for testing the calculateColumnTotal(Values2D data, int column)
+	 * method when the number of rows is on the boundary of 1.
 	 */
 	public void calculateColumnTotalForOneValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
@@ -283,18 +329,20 @@ public class DataUtilitiesTest {
 			{
 				oneOf(values).getRowCount();
 				will(returnValue(1));
-				oneOf(values).getValue(0, 0);
+				oneOf(values).getColumnCount();
+				will(returnValue(2));
+				oneOf(values).getValue(0, 1);
 				will(returnValue(1.25));
 			}
 		});
-		double result = DataUtilities.calculateColumnTotal(values, 0);
-		assertEquals(1.25, result, .01d);
+		double result = DataUtilities.calculateColumnTotal(values, 1);
+		assertEquals("Second column has only 1.25", 1.25, result, .01d);
 	}
 
 	@Test
-	/*
-	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
-	 * when the number of rows is below the boundary of 1.
+	/**
+	 * A method for testing the calculateColumnTotal(Values2D data, int column)
+	 * method when the number of rows is below the boundary of 1.
 	 */
 	public void calculateColumnTotalForZeroValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
@@ -305,14 +353,13 @@ public class DataUtilitiesTest {
 			}
 		});
 		double result = DataUtilities.calculateColumnTotal(values, 0);
-		assertEquals(0, result, .01d);
+		assertEquals("Empty input should return 0", 0, result, .01d);
 	}
-	
 
 	// clone
-	/*
-	 * A method for testing the clone(double [][] source) method
-	 * when the values are low low.
+	/**
+	 * A method for testing the clone(double [][] source) method when the values are
+	 * low low.
 	 */
 	@Test
 	public void cloneFor1By1ArrayTest() {
@@ -324,9 +371,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the clone(double [][] source) method
-	 * when the values are low high.
+	/**
+	 * A method for testing the clone(double [][] source) method when the values are
+	 * low high.
 	 */
 	public void cloneFor1By10ArrayTest() {
 		double[][] array = new double[1][10];
@@ -338,9 +385,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the clone(double [][] source) method
-	 * when the values are high low.
+	/**
+	 * A method for testing the clone(double [][] source) method when the values are
+	 * high low.
 	 */
 	public void cloneFor10By1ArrayTest() {
 		double[][] array = new double[10][1];
@@ -352,9 +399,9 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
-	/*
-	 * A method for testing the clone(double [][] source) method
-	 * when the values are high high.
+	/**
+	 * A method for testing the clone(double [][] source) method when the values are
+	 * high high.
 	 */
 	public void cloneFor10By10ArrayTest() {
 		double[][] array = new double[10][10];
@@ -366,11 +413,11 @@ public class DataUtilitiesTest {
 		double[][] result = DataUtilities.clone(array);
 		assertArrayEquals(result, array);
 	}
-	
+
 	@Test
-	/*
-	 * A method for testing the clone(double [][] source) method
-	 * when the values are not cloned and others are cloned.
+	/**
+	 * A method for testing the clone(double [][] source) method when the values are
+	 * not cloned and others are cloned.
 	 */
 	public void notCloneFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
