@@ -16,6 +16,10 @@ public class DataUtilitiesTest {
 	// createNumberArray
 
 	@Test
+	/**
+	 * A method for testing the createNumberArray(double[] data) method
+	 * for any values in the double array. 
+	 */
 	public void createNumberArrayTest() {
 		for (int m = 0; m < 10; m++) {
 			double[] array = new double[m];
@@ -32,8 +36,11 @@ public class DataUtilitiesTest {
 
 	
 	// createNumberArray2D
-
 	@Test
+	/*
+	 * A method for testing the createNumberArray2D(double[][] data) method
+	 * when the input is null.
+	 */
 	public void createNumberArray2DForNULL() {
 		boolean testResult = false;
 		try {
@@ -46,6 +53,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the createNumberArray2D(double[][] data) method
+	 * when the input has minimum minimum values. 
+	 */
 	public void createNumberArray2DFor1By1Array() {
 		double[][] input = { { 10.5 } };
 		Number[][] expected = { { 10.5 } };
@@ -54,6 +65,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the createNumberArray2D(double[][] data) method
+	 * when the input has minimum high values. 
+	 */
 	public void createNumberArray2DFor1By10Array() {
 		double[][] input = new double[1][10];
 		Number[][] expected = new Number[1][10];
@@ -66,6 +81,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the createNumberArray2D(double[][] data) method
+	 * when the input has high minimum values. 
+	 */
 	public void createNumberArray2DFor10By1Array() {
 		double[][] input = new double[10][1];
 		Number[][] expected = new Number[10][1];
@@ -78,6 +97,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the createNumberArray2D(double[][] data) method
+	 * when the input has high high values. 
+	 */
 	public void createNumberArray2DFor10By10Array() {
 		double[][] input = new double[10][10];
 		Number[][] expected = new Number[10][10];
@@ -93,7 +116,10 @@ public class DataUtilitiesTest {
 
 	
 	// equal
-
+	/*
+	 * A method for testing the equal(double[][]a, double[][]b) method
+	 * when the input is low low values.
+	 */
 	@Test
 	public void equalFor1By1ArrayTest() {
 		double[][] array1 = { { 10.5 } };
@@ -104,6 +130,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the equal(double[][]a, double[][]b) method
+	 * when the input is low high values.
+	 */
 	public void equalFor1By10ArrayTest() {
 		double[][] array1 = new double[1][10];
 		double[][] array2 = new double[1][10];
@@ -115,6 +145,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the equal(double[][]a, double[][]b) method
+	 * when the input is high low values.
+	 */
 	public void equalFor10By1ArrayTest() {
 		double[][] array1 = new double[10][1];
 		double[][] array2 = new double[10][1];
@@ -126,6 +160,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the equal(double[][]a, double[][]b) method
+	 * when the input is high high values.
+	 */
 	public void equalFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
 		double[][] array2 = new double[10][10];
@@ -137,7 +175,12 @@ public class DataUtilitiesTest {
 		}
 		assertEquals(DataUtilities.equal(array1, array2), true);
 	}
+	
 	@Test
+	/*
+	 * A method for testing the equal(double[][]a, double[][]b) method
+	 * when the input values are not equal.
+	 */
 	public void notEqualFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
 		double[][] array2 = new double[10][10];
@@ -152,7 +195,10 @@ public class DataUtilitiesTest {
 
 	
 	// getCumulativePercentages
-
+	/*
+	 * A method for testing the getCumulativePercentages(KeyedValues data) method
+	 * when the inputs are positive.
+	 */
 	@Test
 	public void getCumulativePercentagesForThreeValues() {
 		KeyedValues values = mockingContext.mock(KeyedValues.class);
@@ -185,6 +231,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the getCumulativePercentages(KeyedValues data) method
+	 * when the inputs are zero.
+	 */
 	public void getCumulativePercentagesForZeroValues() {
 		KeyedValues values = mockingContext.mock(KeyedValues.class);
 		mockingContext.checking(new Expectations() {
@@ -202,6 +252,10 @@ public class DataUtilitiesTest {
 	// calculateColumnTotal
 
 	@Test
+	/*
+	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
+	 * when the number of rows is above the boundary of 1.
+	 */
 	public void calculateColumnTotalForTwoValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
 		mockingContext.checking(new Expectations() {
@@ -219,6 +273,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
+	 * when the number of rows is on the boundary of 1.
+	 */
 	public void calculateColumnTotalForOneValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
 		mockingContext.checking(new Expectations() {
@@ -234,6 +292,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the calculateColumnTotal(Values2D data, int column) method
+	 * when the number of rows is below the boundary of 1.
+	 */
 	public void calculateColumnTotalForZeroValues() {
 		Values2D values = mockingContext.mock(Values2D.class);
 		mockingContext.checking(new Expectations() {
@@ -248,7 +310,10 @@ public class DataUtilitiesTest {
 	
 
 	// clone
-	
+	/*
+	 * A method for testing the clone(double [][] source) method
+	 * when the values are low low.
+	 */
 	@Test
 	public void cloneFor1By1ArrayTest() {
 		double[][] array = { { 10.5 } };
@@ -259,6 +324,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the clone(double [][] source) method
+	 * when the values are low high.
+	 */
 	public void cloneFor1By10ArrayTest() {
 		double[][] array = new double[1][10];
 		for (int i = 0; i < 10; i++) {
@@ -269,6 +338,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the clone(double [][] source) method
+	 * when the values are high low.
+	 */
 	public void cloneFor10By1ArrayTest() {
 		double[][] array = new double[10][1];
 		for (int i = 0; i < 10; i++) {
@@ -279,6 +352,10 @@ public class DataUtilitiesTest {
 	}
 
 	@Test
+	/*
+	 * A method for testing the clone(double [][] source) method
+	 * when the values are high high.
+	 */
 	public void cloneFor10By10ArrayTest() {
 		double[][] array = new double[10][10];
 		for (int i = 0; i < 10; i++) {
@@ -291,6 +368,10 @@ public class DataUtilitiesTest {
 	}
 	
 	@Test
+	/*
+	 * A method for testing the clone(double [][] source) method
+	 * when the values are not cloned and others are cloned.
+	 */
 	public void notCloneFor10By10ArrayTest() {
 		double[][] array1 = new double[10][10];
 		double[][] array2 = new double[10][10];
