@@ -11,7 +11,7 @@
 
 # 1 Introduction
 
-Text…
+The purpose of this lab is to explore how to use Junit tests to thoroughly test the methods of a particular class in order to ensure that the class functions as it should. To do this, the Junit class allows you to create a test function and compares the correct result with the result that the function actually returns. Although the process is straightforward, accurately testing a class requires a thorough analysis of boundary cases and other necessary test cases for each method. Additionally, 
 
 # 2 Detailed description of unit test strategy
 
